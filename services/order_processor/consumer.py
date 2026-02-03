@@ -57,4 +57,12 @@ for msg in consumer:
             producer.send("orders", next_event)
             producer.flush()
 
+            notification_event = {
+                "order_id": order_id,
+                "message": f"Order {order_id} is now {next_status}"
+            }
+
+            producer.send("order_notifications", notification_event)
+            producer.flush()
+
             print(f"Moved order {order_id} → {next_status}")
