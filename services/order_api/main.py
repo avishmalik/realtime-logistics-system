@@ -11,6 +11,7 @@ producer = KafkaProducer(
     bootstrap_servers="host.docker.internal:9092",
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
+# use bootstrap_servers="kafka:9092" for kafka broker in local
 
 # Redis
 r = redis.Redis(host="redis", port=6379, decode_responses=True)

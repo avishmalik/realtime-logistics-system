@@ -1,0 +1,59 @@
+🚀 5-Minute Restart Checklist
+
+When you return to this project after a break.
+
+✅ Step 1 — Start Kubernetes
+
+Using Minikube:
+
+minikube start
+
+
+Check:
+
+kubectl get nodes
+
+
+You want:
+
+Ready
+
+✅ Step 2 — Use Minikube Docker
+
+So images are available to cluster:
+
+eval $(minikube docker-env)
+
+✅ Step 3 — Start Kafka
+
+Go to infra:
+
+cd infrastructure
+docker-compose up -d
+
+
+Check:
+
+docker ps
+
+
+Kafka + Zookeeper running ✅
+
+✅ Step 4 — Deploy K8s Resources
+kubectl apply -f infrastructure/k8s/
+
+
+Check:
+
+kubectl get pods
+
+
+You want:
+
+Running
+
+✅ Step 5 — Access API
+minikube service order-api
+
+
+Swagger UI opens 🎉

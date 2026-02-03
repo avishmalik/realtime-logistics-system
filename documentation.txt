@@ -1,0 +1,67 @@
+📦 Real-Time Logistics Event System
+
+A distributed event-driven microservices system simulating a logistics backend (like Uber/Swiggy) using Kafka, Redis, Docker, and Kubernetes.
+
+🚀 Tech Stack
+
+Python (FastAPI)
+
+Apache Kafka
+
+Redis
+
+Docker
+
+Kubernetes (Minikube)
+
+kafka-python
+
+🧠 Architecture
+Client → FastAPI → Kafka → Order Processor → Redis
+                            ↓
+                     Notification Service
+
+✨ Features
+
+Event-driven architecture
+
+Order lifecycle simulation
+
+Redis-based state caching
+
+Kafka pub-sub messaging
+
+Horizontally scalable consumers
+
+Containerized microservices
+
+Kubernetes deployments & services
+
+📁 Project Structure
+services/
+  order_api/
+  order_processor/
+  notification_service/
+
+infrastructure/
+  docker-compose.yml
+  k8s/
+
+⚙️ How to Run
+1️⃣ Start Minikube
+minikube start
+
+2️⃣ Start Kafka
+docker-compose up -d
+
+3️⃣ Deploy to Kubernetes
+kubectl apply -f infrastructure/k8s/
+
+4️⃣ Access API
+minikube service order-api
+
+📈 Scaling Consumers
+kubectl scale deployment order-processor --replicas=3
+
+
+Demonstrates distributed processing.

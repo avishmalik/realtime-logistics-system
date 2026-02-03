@@ -6,17 +6,19 @@ import time
 # Kafka Consumer
 consumer = KafkaConsumer(
     "orders",
-    bootstrap_servers="kafka:9092",
+    bootstrap_servers="host.docker.internal:9092",
     value_deserializer=lambda m: json.loads(m.decode("utf-8")),
     auto_offset_reset="earliest",
     group_id="order-group"
 )
+# use bootstrap_servers="kafka:9092" for kafka broker in local
 
 # Kafka Producer (to publish next state)
 producer = KafkaProducer(
-    bootstrap_servers="kafka:9092",
+    bootstrap_servers="host.docker.internal:9092",
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
+# use bootstrap_servers="kafka:9092" for kafka broker in local
 
 # Redis connection
 r = redis.Redis(host="redis", port=6379, decode_responses=True)
