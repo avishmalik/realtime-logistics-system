@@ -8,12 +8,12 @@ app = FastAPI()
 
 # Kafka Producer
 producer = KafkaProducer(
-    bootstrap_servers="localhost:9092",
+    bootstrap_servers="kafka:9092",
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
 # Redis
-r = redis.Redis(host="localhost", port=6379, decode_responses=True)
+r = redis.Redis(host="redis", port=6379, decode_responses=True)
 
 
 @app.post("/orders")

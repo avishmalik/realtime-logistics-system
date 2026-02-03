@@ -6,7 +6,7 @@ import time
 # Kafka Consumer
 consumer = KafkaConsumer(
     "orders",
-    bootstrap_servers="localhost:9092",
+    bootstrap_servers="kafka:9092",
     value_deserializer=lambda m: json.loads(m.decode("utf-8")),
     auto_offset_reset="earliest",
     group_id="order-group"
@@ -14,12 +14,12 @@ consumer = KafkaConsumer(
 
 # Kafka Producer (to publish next state)
 producer = KafkaProducer(
-    bootstrap_servers="localhost:9092",
+    bootstrap_servers="kafka:9092",
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
 # Redis connection
-r = redis.Redis(host="localhost", port=6379, decode_responses=True)
+r = redis.Redis(host="redis", port=6379, decode_responses=True)
 
 STATUS_FLOW = [
     "PLACED",
